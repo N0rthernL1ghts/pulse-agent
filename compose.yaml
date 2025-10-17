@@ -10,8 +10,6 @@ services:
     init: true
     image: ghcr.io/n0rthernl1ghts/pulse-agent:latest
     pull_policy: always
-    build:
-      context: .
     environment:
       PULSE_INSECURE_SKIP_VERIFY: false
       # PULSE_URL: https://pulse
