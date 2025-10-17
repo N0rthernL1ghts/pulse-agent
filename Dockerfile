@@ -50,6 +50,13 @@ RUN set -eux \
 COPY --from=rootfs ["/", "/"]
 
 ARG PULSE_VERSION
+LABEL maintainer="Aleksandar Puharic <aleksandar@puharic.com>" \
+      org.opencontainers.image.documentation="https://github.com/N0rthernL1ghts/pulse-agent/wiki" \
+      org.opencontainers.image.source="https://github.com/N0rthernL1ghts/pulse-agent" \
+      org.opencontainers.image.description="Pulse Agent ${PULSE_VERSION}" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.version="${PULSE_VERSION}"
+
 ENV SECRETS_EXPORT_PATH=/run/secrets_normalized \
     NORMALIZE_SECRET_NAMES=1 \
     PULSE_VERSION="${PULSE_VERSION}" \
