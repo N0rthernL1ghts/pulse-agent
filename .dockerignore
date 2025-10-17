@@ -1,0 +1,6 @@
+.git/
+.idea/
+secrets/
+data/
+compose.override.yaml
+docker-compose.override.yml

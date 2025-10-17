@@ -1,0 +1,27 @@
+secrets:
+  pulse_token:
+    file: secrets/pulse_token.txt
+
+networks:
+  default:
+
+services:
+  agent:
+    init: true
+    image: ghcr.io/n0rthernl1ghts/pulse-agent:latest
+    pull_policy: always
+    build:
+      context: .
+    environment:
+      PULSE_INSECURE_SKIP_VERIFY: false
+      # PULSE_URL: https://pulse
+      # PULSE_AGENT_ID:
+      # PULSE_HOSTNAME:
+      # PULSE_INTERVAL: 30
+      # PULSE_TARGETS: url|token[|insecure]
+    secrets:
+      - pulse_token
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      default:
