@@ -35,7 +35,7 @@ COPY ["./src/pulse-entrypoint.sh", "/"]
 COPY --from=docker-env-secrets ["/rootfs-build/", "/"]
 
 # Add copy of Pulse license (MIT)
-ADD ["https://raw.githubusercontent.com/rcourtman/Pulse/refs/heads/main/LICENSE", "/opt/pulse/LICENSE"]
+ADD ["https://raw.githubusercontent.com/rcourtman/Pulse/refs/heads/main/LICENSE", "/usr/local/src/pulse/LICENSE"]
 
 
 
