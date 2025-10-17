@@ -27,6 +27,7 @@ Image is tagged with the Pulse Agent software version.
 To run the pulse agent, you can use the following command. Note that you need to provide a `pulse_token` secret and configure the agent through environment variables.<br/>
 Due to design, secrets and environment variables are interchangeable, meaning you can use `PULSE_TOKEN` as environment variable. This is discouraged, however. 
 
+`compose.yaml`
 ```yaml
 secrets:
   pulse_token:
@@ -41,7 +42,7 @@ services:
     image: ghcr.io/n0rthernl1ghts/pulse-agent:latest
     pull_policy: always
     environment:
-      PULSE_URL: https://my-pulse.example.com
+      PULSE_URL: https://pulse
     secrets:
       - pulse_token
     volumes:
@@ -49,3 +50,19 @@ services:
     networks:
       default:
 ```
+
+What I would recommend is keeping `compose.yaml` as close to original as possible and instead create separate file where you can override defaults.
+
+`compose.override.yaml`
+```yaml
+services:
+  agent:
+    environment:
+      PULSE_URL: https://pulse.example.com
+```
+
+After this, run:
+```shell
+docker compose up -d
+```
+Docker compose is will look for `compose.override.yaml` and override configuration from `compose.yaml`. 
