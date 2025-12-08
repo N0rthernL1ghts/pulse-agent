@@ -9,7 +9,7 @@ FROM ghcr.io/rcourtman/pulse-docker-agent:${PULSE_VERSION} AS pulse
 #################################################
 # STAGE: Adapt docker-env-secrets for no s6     #
 #################################################
-FROM alpine:3.22 AS docker-env-secrets
+FROM alpine:3.23 AS docker-env-secrets
 
 # Install init-docker-secrets service
 COPY --from=ghcr.io/n0rthernl1ghts/docker-env-secrets:latest ["/", "/rootfs-build/"]
@@ -42,7 +42,7 @@ ADD ["https://raw.githubusercontent.com/rcourtman/Pulse/refs/heads/main/LICENSE"
 #################################################
 # STAGE: Build main image                       #
 #################################################
-FROM alpine:3.22
+FROM alpine:3.23
 
 RUN set -eux \
     && apk add --no-cache bash
